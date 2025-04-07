@@ -3,6 +3,8 @@ import yaml
 import numpy as np
 import joblib
 from HF.exception import HFException
+import os
+import pandas as pd
 def read_yaml_file(file_path: str) -> dict:
     """
     Reads the YAML file and returns its content as a dictionary
@@ -50,9 +52,7 @@ def create_directories(directories: list):
         os.makedirs(directory, exist_ok=True)
         print(f"Directory {directory} created or already exists.")
         
-    # Python
-import os
-
+ 
 def write_yaml_file(file_path, content):
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)  # Ensure the directory exists
@@ -60,3 +60,18 @@ def write_yaml_file(file_path, content):
             yaml.dump(content, file)
     except Exception as e:
         raise HFException(f"Error writing to YAML file at {file_path}: {e}", sys)
+    
+import pandas as pd
+
+def drop_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    """
+    Drop specified columns from a pandas DataFrame.
+    
+    Args:
+        df (pd.DataFrame): Input DataFrame.
+        columns (list): List of column names to drop.
+    
+    Returns:
+        pd.DataFrame: DataFrame after dropping specified columns.
+    """
+    return df.drop(columns=columns, errors='ignore')

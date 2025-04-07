@@ -131,3 +131,31 @@ oh_columns:
   - Wall
   - Thrombolysis
   - MR
+transform_columns:
+    - BMI
+    - HR
+    - RBS
+    - Creatinine
+    - K
+    - LVIDs
+    - MPI
+    - RR
+    - TC
+    - LDLc
+    - HDLc
+    - TG
+    - HbA1C
+    - Cl
+    - TropI
+    - BNP
+    - Na
+    - K
+    - Hb
+    - LVIDd
+    - FS
+    - LVEF
+    - LAV
+    - IRT
+    - EA
+    - DT
+    - RR
