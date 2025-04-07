@@ -1,4 +1,4 @@
-# HF/utils/main_utils.py
+import sys
 import yaml
 import numpy as np
 import joblib
@@ -49,3 +49,14 @@ def create_directories(directories: list):
     for directory in directories:
         os.makedirs(directory, exist_ok=True)
         print(f"Directory {directory} created or already exists.")
+        
+    # Python
+import os
+
+def write_yaml_file(file_path, content):
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)  # Ensure the directory exists
+        with open(file_path, "w") as file:
+            yaml.dump(content, file)
+    except Exception as e:
+        raise HFException(f"Error writing to YAML file at {file_path}: {e}", sys)

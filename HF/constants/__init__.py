@@ -16,6 +16,10 @@ TEST_FILE_NAME: str = "test.csv"
 
 FILE_NAME: str = "Study_Data.csv"
 MODEL_FILE_NAME = "model.pkl"
+##########################################################################
+TARGET_COLUMN = "HF"
+PREPROCSSING_OBJECT_FILE_NAME = "preprocessing.pkl"
+SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
 
 
 """
@@ -30,3 +34,13 @@ DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
 terget_column = "HF"
 PREPROCSSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
+########################################################################
+"""
+Data Validation realted contant start with DATA_VALIDATION VAR NAME
+"""
+DATA_VALIDATION_DIR_NAME: str = "data_validation"
+DATA_VALIDATION_DRIFT_REPORT_DIR: str = "drift_report"
+DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = "report.yaml"
+
+
+###########################################################################
