@@ -1,0 +1,5 @@
+{
+        "explorer.expandSingleFolderWorkspaces": true,
+        "explorer.openEditors.minVisible": 0,
+        "terminal.integrated.cursorStyle": "block"
+}

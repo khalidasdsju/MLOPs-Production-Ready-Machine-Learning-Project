@@ -1,45 +1,24 @@
-
-import os
-import sys
-from HF.exception import HFException
-from HF.logger import logging
-from HF.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
-from HF.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact
+from HF.entity.config_entity import TrainingPipelineConfig, DataIngestionConfig
 from HF.components.data_ingestion import DataIngestion
-from HF.components.data_validation import DataValidation
-from HF.components.data_transformation import DataTransformation
+from HF.exception import HFException
+import sys
 
 class TrainPipeline:
-    def __init__(self, training_pipeline_config):
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         self.training_pipeline_config = training_pipeline_config
-        self.data_ingestion_config = DataIngestionConfig()
-        self.data_validation_config = DataValidationConfig()
-        self.data_transformation_config = DataTransformationConfig()
+        self.data_ingestion_config = DataIngestionConfig()  # Make sure you import and use your config properly
+        self.data_ingestion = DataIngestion(self.data_ingestion_config)
 
-    def start_data_ingestion(self) -> DataIngestionArtifact:
+    def start_data_ingestion(self):
         try:
-            logging.info("Starting data ingestion")
-
-            # Initialize DataIngestion
-            data_ingestion = DataIngestion(self.data_ingestion_config)
-            data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
-
-            logging.info("Data ingestion completed")
+            data_ingestion_artifact = self.data_ingestion.initiate_data_ingestion()
             return data_ingestion_artifact
-
         except Exception as e:
             raise HFException(e, sys)
 
-    def start_data_validation(self) -> DataValidationArtifact:
+    def run_pipeline(self):
         try:
-            logging.info("Starting data validation")
-
-            # Initialize DataValidation
-            data_validation = DataValidation(self.data_validation_config)
-            data_validation_artifact = data_validation.initiate_data_validation()
-
-            logging.info("Data validation completed")
-            return data_validation_artifact
-
+            self.start_data_ingestion()  # Start with data ingestion
+            # You can add more steps for other stages of the pipeline, e.g., data validation, transformation, etc.
         except Exception as e:
             raise HFException(e, sys)
